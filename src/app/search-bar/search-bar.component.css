@@ -1,0 +1,23 @@
+.search-bar {
+  z-index: 800;
+  position: absolute;
+  top: 0px;
+  background: #fff;
+  border-radius: 8px;
+  width: 392px;
+  border-bottom: 1px solid transparent;
+  margin: 10px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.formField {
+  width: 95%;
+  padding-right: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
