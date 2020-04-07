@@ -38,6 +38,7 @@ export class BaseMapService {
     return L.map(divContainer, {
       center: [MapCenterY, MapCenterX],
       zoom: zoomLevel,
+      zoomControl: false,
     });
   }
 }
