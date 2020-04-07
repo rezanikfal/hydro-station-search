@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
   constructor() {}
-
   ngOnInit(): void {}
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
 }
