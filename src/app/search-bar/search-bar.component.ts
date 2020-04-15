@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { HydroStationService } from '../services/hydro-station.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,8 +8,13 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent implements OnInit {
-  constructor() {}
+  constructor(private hydroStation: HydroStationService) {}
   ngOnInit(): void {}
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = [];
+  onChangeSearchItem(e: any) {
+    this.hydroStation.stationList(e.target.value).subscribe((e: any) => {
+      this.options = e.items.map((station: any) => station.label);
+    });
+  }
 }

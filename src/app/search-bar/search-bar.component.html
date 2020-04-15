@@ -5,8 +5,7 @@
       <input
         type="text"
         matInput
-        aria-label="Number"
-        placeholder="Reza"
+        (input)="onChangeSearchItem($event)"
         [formControl]="myControl"
         [matAutocomplete]="auto"
       />
