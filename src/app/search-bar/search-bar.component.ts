@@ -7,14 +7,18 @@ import { HydroStationService } from '../services/hydro-station.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css'],
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
   constructor(private hydroStation: HydroStationService) {}
-  ngOnInit(): void {}
   myControl = new FormControl();
   options: string[] = [];
+
   onChangeSearchItem(e: any) {
-    this.hydroStation.stationList(e.target.value).subscribe((e: any) => {
-      this.options = e.items.map((station: any) => station.label);
+    this.hydroStation.stationList(e.target.value).subscribe((response) => {
+      if (!e.target.value) {
+        this.options = [];
+      } else {
+        this.options = response.items.map((station) => station.label);
+      }
     });
   }
 }

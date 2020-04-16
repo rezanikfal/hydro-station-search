@@ -13,7 +13,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.mainMap = this.baseMap.leafletBaseMap('map', -3, 54, 6);
-    this.baseMap.googleBaseMap('USHydro', 'm').addTo(this.mainMap);
+    this.baseMap.googleBaseMap('UKHydro', 'm').addTo(this.mainMap);
     L.control.scale().addTo(this.mainMap).setPosition('bottomright');
   }
 }

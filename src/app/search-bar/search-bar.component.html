@@ -4,6 +4,7 @@
       <mat-label>Search a hydro-station</mat-label>
       <input
         type="text"
+        #inputData
         matInput
         (input)="onChangeSearchItem($event)"
         [formControl]="myControl"
