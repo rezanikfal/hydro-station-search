@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HydroStationService } from '../services/hydro-station.service';
+import { AddLayerService } from '../services/add-layer.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,7 +9,11 @@ import { HydroStationService } from '../services/hydro-station.service';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent {
-  constructor(private hydroStation: HydroStationService) {}
+  constructor(
+    private hydroStation: HydroStationService,
+    private addLayer: AddLayerService
+  ) {}
+  @Input() hydroStationMarker: L.LayerGroup;
   myControl = new FormControl();
   options: string[] = [];
 
@@ -20,5 +25,14 @@ export class SearchBarComponent {
         this.options = response.items.map((station) => station.label);
       }
     });
+  }
+  onSelectItem() {
+    this.addLayer.addPointToLayerGroup(
+      this.hydroStationMarker,
+      53,
+      -2,
+      'Test',
+      'Test2'
+    );
   }
 }
