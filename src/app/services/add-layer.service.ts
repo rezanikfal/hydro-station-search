@@ -13,28 +13,38 @@ export class AddLayerService {
     lat: number,
     long: number,
     statioName: string,
-    otherInfo: string
+    riverName: string,
+    stationReference: string
   ) {
     layerGroup.addLayer(
       L.marker([lat, long])
         .bindTooltip(
-          `<table>
-      <tr style="border-bottom: 1px solid black">
-         <td colspan=2 style="font-weight: bold">Station Info</td>
-      </tr>
-      <tr>
-         <td style="color: gray; padding-top: 3px">Station Name:&nbsp</td>
-         <td>StationName</td>
-      </tr>
-      <tr>
-      <td style="color: gray">Other:&nbsp</td>
-      <td>OTHER</td>
-      </tr>
-      </table>
+          `
+          <table style="border: 1px solid black; border-collapse: collapse;  border-spacing: 15px;">
+          <tr>
+             <th colspan=2 style="border: 1px solid black; background-color: #dcdcdc">Station Info</th>
+          </tr>
+          <tr>
+             <td style="color: gray; padding: 3px">Station Name:&nbsp</td>
+             <td style="padding: 3px">${statioName}</td>
+          </tr>
+          <tr>
+             <td style="color: gray; padding: 3px">River Name:&nbsp</td>
+             <td style="padding: 3px">${riverName}</td>
+          </tr>
+          <tr>
+          <td style="color: gray; padding: 3px">Station Reference:&nbsp</td>
+          <td style="padding: 3px">${stationReference}</td>
+       </tr>
+       </table>
       `,
-          { direction: 'auto', permanent: true }
+          { direction: 'auto', permanent: true, opacity: 1 }
         )
         .openTooltip()
     );
+  }
+
+  clearLayerGroup(layerGroup: L.LayerGroup) {
+    layerGroup.clearLayers();
   }
 }

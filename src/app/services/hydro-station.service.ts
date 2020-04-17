@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 interface stationResponse {
   items: {
     label: string;
+    riverName: string;
+    lat: number;
+    long: number;
+    wiskiID: string;
   }[];
 }
 

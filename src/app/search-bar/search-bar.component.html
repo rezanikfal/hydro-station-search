@@ -14,7 +14,7 @@
         <mat-option
           *ngFor="let option of options"
           [value]="option"
-          (onSelectionChange)="onSelectItem()"
+          (onSelectionChange)="onSelectItem($event)"
         >
           {{ option }}
         </mat-option>

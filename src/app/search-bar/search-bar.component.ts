@@ -19,20 +19,31 @@ export class SearchBarComponent {
 
   onChangeSearchItem(e: any) {
     this.hydroStation.stationList(e.target.value).subscribe((response) => {
+      console.log(response);
+
       if (!e.target.value) {
         this.options = [];
       } else {
-        this.options = response.items.map((station) => station.label);
+        this.options = response.items.map(
+          (station) => station.label // + station.wiskiID
+        );
       }
     });
   }
-  onSelectItem() {
-    this.addLayer.addPointToLayerGroup(
-      this.hydroStationMarker,
-      53,
-      -2,
-      'Test',
-      'Test2'
-    );
+  onSelectItem(e: any) {
+    console.log(e.source.value);
+    this.hydroStation.stationList(e.source.value).subscribe((response) => {
+      console.log(response);
+
+      this.addLayer.clearLayerGroup(this.hydroStationMarker);
+      this.addLayer.addPointToLayerGroup(
+        this.hydroStationMarker,
+        response.items[0].lat,
+        response.items[0].long,
+        response.items[0].label,
+        response.items[0].riverName,
+        response.items[0].wiskiID
+      );
+    });
   }
 }
