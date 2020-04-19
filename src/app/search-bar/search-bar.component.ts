@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HydroStationService } from '../services/hydro-station.service';
-import { AddLayerService } from '../services/add-layer.service';
+import { GISService } from '../services/GIS.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,32 +11,30 @@ import { AddLayerService } from '../services/add-layer.service';
 export class SearchBarComponent {
   constructor(
     private hydroStation: HydroStationService,
-    private addLayer: AddLayerService
+    private GeoService: GISService
   ) {}
   @Input() hydroStationMarker: L.LayerGroup;
+  @Input() mainMap: L.Map;
+
   myControl = new FormControl();
   options: string[] = [];
 
-  onChangeSearchItem(e: any) {
-    this.hydroStation.stationList(e.target.value).subscribe((response) => {
-      console.log(response);
-
-      if (!e.target.value) {
-        this.options = [];
-      } else {
+  onChangeSearchItem(e: any): void {
+    if (!e.target.value) {
+      this.options = [];
+      this.GeoService.clearLayerGroup(this.hydroStationMarker);
+    } else {
+      this.hydroStation.stationList(e.target.value).subscribe((response) => {
         this.options = response.items.map(
           (station) => station.label // + station.wiskiID
         );
-      }
-    });
+      });
+    }
   }
-  onSelectItem(e: any) {
-    console.log(e.source.value);
+  onSelectItem(e: any): void {
     this.hydroStation.stationList(e.source.value).subscribe((response) => {
-      console.log(response);
-
-      this.addLayer.clearLayerGroup(this.hydroStationMarker);
-      this.addLayer.addPointToLayerGroup(
+      this.GeoService.clearLayerGroup(this.hydroStationMarker);
+      this.GeoService.addPointToLayerGroup(
         this.hydroStationMarker,
         response.items[0].lat,
         response.items[0].long,
@@ -44,6 +42,19 @@ export class SearchBarComponent {
         response.items[0].riverName,
         response.items[0].wiskiID
       );
+      this.GeoService.setMapView(
+        this.mainMap,
+        response.items[0].long,
+        response.items[0].lat,
+        this.mainMap.getZoom()
+      );
     });
+  }
+
+  resetForm(): void {
+    this.myControl.reset();
+    this.GeoService.clearLayerGroup(this.hydroStationMarker);
+    this.options = [];
+    this.GeoService.setMapView(this.mainMap, -3, 54.4, 6);
   }
 }

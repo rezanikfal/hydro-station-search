@@ -13,7 +13,7 @@ export class MapComponent implements OnInit {
   hydroStationMarker = new L.LayerGroup();
 
   ngOnInit(): void {
-    this.mainMap = this.baseMap.leafletBaseMap('map', -3, 54, 6);
+    this.mainMap = this.baseMap.leafletBaseMap('map', -3, 54.4, 6);
     this.baseMap.googleBaseMap('UKHydro', 'm').addTo(this.mainMap);
     L.control.scale().addTo(this.mainMap).setPosition('bottomright');
     this.hydroStationMarker.addTo(this.mainMap);

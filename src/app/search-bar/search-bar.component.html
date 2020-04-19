@@ -2,14 +2,24 @@
   <form class="example-form">
     <mat-form-field class="formField">
       <mat-label>Search a hydro-station</mat-label>
+
       <input
         type="text"
-        #inputData
         matInput
-        (input)="onChangeSearchItem($event)"
+        (keyup)="onChangeSearchItem($event)"
         [formControl]="myControl"
         [matAutocomplete]="auto"
       />
+      <button
+        mat-button
+        *ngIf="myControl.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="resetForm()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option
           *ngFor="let option of options"

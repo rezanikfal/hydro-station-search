@@ -5,7 +5,7 @@ import '../../assets/images/marker-shadow.png'; //Leaflet bug
 @Injectable({
   providedIn: 'root',
 })
-export class AddLayerService {
+export class GISService {
   constructor() {}
 
   addPointToLayerGroup(
@@ -46,5 +46,14 @@ export class AddLayerService {
 
   clearLayerGroup(layerGroup: L.LayerGroup) {
     layerGroup.clearLayers();
+  }
+
+  setMapView(
+    map: L.Map,
+    MapCenterX: number,
+    MapCenterY: number,
+    zoomLevel: number
+  ): void {
+    map.setView(new L.LatLng(MapCenterY, MapCenterX), zoomLevel);
   }
 }
