@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Defra DataSource API
 
-In this projetc I have used [Defra](https://environment.data.gov.uk/) Data Services Platform for real-time hydrometric stations data. Defra group have put in place the Data Services Platform to make environmental data openly available to a wide range of users.
+In this project, [Defra](https://environment.data.gov.uk/) Data Services Platform has been used for real-time hydrometric stations data. Defra group have put in place the Data Services Platform to make environmental data openly available to a wide range of users.
 
 ## App Preview Shot
 
