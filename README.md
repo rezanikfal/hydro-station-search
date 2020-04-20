@@ -1,6 +1,6 @@
 # UKHydro
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0, Leaflet 1.6.0, and Angular Material 9.2.0. This project is a simple web-GIS application to search hydrometric stations across UK.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0, [Leaflet](https://leafletjs.com/) version 1.6.0, and [Angular Material](https://material.angular.io/) version 9.2.0. This project is a simple web-GIS application to search hydrometric stations across UK.
 
 ## Defra DataSource API
 
