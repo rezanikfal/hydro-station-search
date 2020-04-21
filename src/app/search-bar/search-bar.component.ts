@@ -25,13 +25,12 @@ export class SearchBarComponent {
       this.GeoService.clearLayerGroup(this.hydroStationMarker);
     } else {
       this.hydroStation.stationList(e.target.value).subscribe((response) => {
-        this.options = response.items.map(
-          (station) => station.label // + station.wiskiID
-        );
+        this.options = response.items.map((station) => station.label);
       });
     }
   }
   onSelectItem(e: any): void {
+    this.options = [];
     this.hydroStation.stationList(e.source.value).subscribe((response) => {
       this.GeoService.clearLayerGroup(this.hydroStationMarker);
       this.GeoService.addPointToLayerGroup(
